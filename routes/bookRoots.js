@@ -1,9 +1,10 @@
 const express = require('express')
-const router = express.Router()
+const routerAPI = express.Router()
 
-const defaultPath = '/books';
-router.use(express.urlencoded());
-router.use(express.json());
+routerAPI.use(express.urlencoded());
+routerAPI.use(express.json());
+
+const URL = '/books';
 
 let bookstore = {
     books: [
@@ -11,11 +12,11 @@ let bookstore = {
     ]
 };
 
-router.get(defaultPath, (req, res) => {
+routerAPI.get(URL, (req, res) => {
     return res.status(200).send(bookstore);
 });
 
-router.get(`${defaultPath}/:id`, (req, res) => {
+routerAPI.get(`${URL}/:id`, function (req, res) {
     const id = String(req?.params?.id);
     const item = bookstore.books.find(item => item.id == id);
     if (!!item) {
@@ -24,13 +25,13 @@ router.get(`${defaultPath}/:id`, (req, res) => {
     return res.status(200).send(item);
 });
 
-router.post(defaultPath, (req, res) => {
+routerAPI.post(URL, function (req, res) {
     req.body.id = bookstore.books.length + 1;
     bookstore.books.push(req.body);
     return reply.status(201).send(req.body);
 });
 
-router.put(`${defaultPath}/:id`, (req, res) => {
+routerAPI.put(`${URL}/:id`, function (req, res) {
     const id = String(request?.params?.id);
     let thereIs = false;
     let currentItem = null;
@@ -48,10 +49,10 @@ router.put(`${defaultPath}/:id`, (req, res) => {
         : res.status(200).send(currentItem);
 });
 
-router.delete(`${defaultPath}/:id`, (req, res) => {
+routerAPI.delete(`${URL}/:id`, function (req, res) {
     const id = String(req?.params?.id);
     bookstore.books = bookstore.books.filter(item => item.id != id);
     return res.status(200).send(bookstore);
 });
 
-module.exports = router;
+module.exports = routerAPI;
