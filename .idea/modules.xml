@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/web-service-node.iml" filepath="$PROJECT_DIR$/.idea/web-service-node.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/node-basic-app.iml" filepath="$PROJECT_DIR$/.idea/node-basic-app.iml" />
     </modules>
   </component>
 </project>
